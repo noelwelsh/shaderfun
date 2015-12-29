@@ -31,17 +31,18 @@ object TheQuadExampleColored extends App {
     out vec4 out_Color;
 
     void main(void) {
-      float dist = distance(vec2(gl_FragCoord.x, gl_FragCoord.y), vec2(160, 120));
-      float value = smoothstep(0, 120, dist);
+      float red = smoothstep(-1.0, 1.0, cos(radians(gl_FragCoord.x * 3)));
+      float green = smoothstep(-1.0, 1.0, tan(radians(gl_FragCoord.x * gl_FragCoord.y)));
+      float blue = smoothstep(-1.0, 1.0, cos(radians(gl_FragCoord.y * 3)));
 
-      out_Color = vec4(value, 0.0, 0.0, 1.0);
+      out_Color = vec4(red, green, blue, 1.0);
     }
     """
 
   // Setup variables
   var WINDOW_TITLE: String  = "The Quad: colored"
-  val WIDTH = 320
-  val HEIGHT = 240
+  val WIDTH = 720
+  val HEIGHT = 720
 
   var window = 0L
   var capabilities: GLCapabilities = null
